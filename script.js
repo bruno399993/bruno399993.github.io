@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
         inteligencia: 4,
         defensa: 6,
         valor: 7,
-        habilidad: 6,
+        habilidad: 7,
         habilidadDestacada: "CHAMBEAR",
         debilidad: "SE ENOJA FACILMENTE",
         photo: "images/foto6.jpg"
