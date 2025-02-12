@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
         pasatiempos: "Jugar, programar",
         nivel: 3,
         fuerza: 2,
-        inteligencia: 6,
+        inteligencia: 8,
         defensa: 1,
         valor: 7.5,
         habilidad: 10,
