@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Definir los atributos con sus valores y ángulos fijos
     const attributes = [
       { name: "Fuerza", value: Number(values.fuerza), angle: -90 },
-      { name: "Inteligencia", value: Number(values.inteligencia), angle: -18 },
+      { name: "IQ", value: Number(values.inteligencia), angle: -18 },
       { name: "Defensa", value: Number(values.defensa), angle: 54 },
       { name: "Valor", value: Number(values.valor), angle: 126 },
       { name: "Habilidad", value: Number(values.habilidad), angle: 198 }
