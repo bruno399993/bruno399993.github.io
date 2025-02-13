@@ -103,11 +103,17 @@
     text-align: center;
     margin-top: 5px;
   }
+  /* Texto de habilidad destacada debajo del radar */
+.destaca {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
+}
 
-  /* Nuevo: Texto de debilidad debajo de la habilidad destacada */
-  .debilidad {
-    font-size: 14px;
-    text-align: center;
-    margin-top: 5px;
-    color: #ff6666;  /* Color rojo para resaltar la debilidad */
-  };
+/* Nuevo: Texto de debilidad debajo de la habilidad destacada */
+.debilidad {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
+  color: #ff6666;  /* Color rojo para resaltar la debilidad */
+}
