@@ -17,7 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
         agilidad: 10,
         habilidadDestacada: "DiBUJAR GOD",
         debilidad: "ES ANSIOSO",
-        photo: "images/foto1.jpg"
+        photo: "images/foto1.jpg",
+        glowColor: "#950101",    // Color para los costados del glow
+        glowCenter: "#3D0000",   // Color para el centro del glow
+        glowSpeed: "1.5s",         // Velocidad de la animación del glow
+        radarColor: "#ff5733"    // Color personalizado para el radar (se usará para el relleno y trazo)
       },
       {
         id: 2,
@@ -33,7 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
         agilidad: 7.5,
         habilidadDestacada: "ADAPTASER A CUALQUIER JUEGO",
         debilidad: "DEFICIT DE ATENCION",
-        photo: "images/foto2.jpg"
+        photo: "images/foto2.jpg",
+        glowColor: "#008405",
+        glowCenter: "#006007",
+        glowSpeed: "3.5s",
+        radarColor: "#00ff00"
       },
       {
         id: 3,
@@ -41,15 +49,19 @@ document.addEventListener("DOMContentLoaded", function() {
         age: 15,
         gustos: "Los juegos, Musica, tecnologia",
         pasatiempos: "Jugar, programar",
-        nivel: 5.2,
+        nivel: 5.9,
         fuerza: 1.5,
         IQ: 6,
-        resistencia: 1,
+        resistencia: 4.5,
         valor: 7.5,
         agilidad: 10,
         habilidadDestacada: "COPIAR TODO",
         debilidad: "NO PUEDE COPIAR COSAS COMPLEJAS",
-        photo: "images/foto3.jpg"
+        photo: "images/foto3.jpg",
+        glowColor: "#A98307",
+        glowCenter: "#000000",
+        glowSpeed: "4s",
+        radarColor: "#000000"
       },
       {
         id: 4,
@@ -65,7 +77,11 @@ document.addEventListener("DOMContentLoaded", function() {
         agilidad: 3,
         habilidadDestacada: "HABLA INGLES",
         debilidad: "ES DESPISTADO",
-        photo: "images/foto4.jpg"
+        photo: "images/foto4.jpg",
+        glowColor: "#950101",
+        glowSpeed: "3s",
+        glowCenter: "#3D0000",
+        radarColor: "#ff5733"
       },
       {
         id: 5,
@@ -81,7 +97,11 @@ document.addEventListener("DOMContentLoaded", function() {
         agilidad: 3,
         habilidadDestacada: "TIRAR FACTOS",
         debilidad: "LUGARES CON MUCHO RUIDO",
-        photo: "images/foto5.jpg"
+        photo: "images/foto5.jpg",
+        glowColor: "#008405",
+        glowCenter: "#006007",
+        glowSpeed: "2.5s",
+        radarColor: "#00ff00"
       },
       {
         id: 6,
@@ -97,7 +117,11 @@ document.addEventListener("DOMContentLoaded", function() {
         agilidad: 6,
         habilidadDestacada: "CHAMBEAR",
         debilidad: "SE ENOJA FACILMENTE",
-        photo: "images/foto6.jpg"
+        photo: "images/foto6.jpg",
+        glowColor: "#008405",
+        glowCenter: "#006007",
+        glowSpeed: "2.5s",
+        radarColor: "#00ff00"
       },
       {
         id: 7,
@@ -113,7 +137,11 @@ document.addEventListener("DOMContentLoaded", function() {
         agilidad: 3,
         habilidadDestacada: "JUGAR",
         debilidad: "USA MUCHO EL CELULAR",
-        photo: "images/foto7.jpg"
+        photo: "images/foto7.jpg",
+        glowColor: "#008405",
+        glowCenter: "#006007",
+        glowSpeed: "2.5s",
+        radarColor: "#00ff00"
       },
       {
         id: 8,
@@ -129,7 +157,11 @@ document.addEventListener("DOMContentLoaded", function() {
         agilidad: 10,
         habilidadDestacada: "FUERZA",
         debilidad: "ES VAGO",
-        photo: "images/foto8.jpg"
+        photo: "images/foto8.jpg",
+        glowColor: "#008405",
+        glowCenter: "#006007",
+        glowSpeed: "2.5s",
+        radarColor: "#00ff00"
       },
     ];
     
@@ -143,7 +175,16 @@ document.addEventListener("DOMContentLoaded", function() {
   function createProfileCard(data) {
     const card = document.createElement("div");
     card.className = "profile-card";
-
+    
+    // Configuración de variables para el glow (dos colores y velocidad)
+    card.style.setProperty("--glow-color", data.glowColor || "#ff5733");
+    card.style.setProperty("--glow-center", data.glowCenter || "#ffe066");
+    card.style.setProperty("--glow-speed", data.glowSpeed || "3s");
+  
+    // Crear un contenedor para el contenido (para que quede por encima del glow)
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "profile-card-content";
+  
     // Sección de foto
     const photoDiv = document.createElement("div");
     photoDiv.className = "photo";
@@ -151,69 +192,78 @@ document.addEventListener("DOMContentLoaded", function() {
     img.src = data.photo;
     img.alt = "Foto de " + data.name;
     photoDiv.appendChild(img);
-    card.appendChild(photoDiv);
-
+    contentDiv.appendChild(photoDiv);
+  
     // Sección de información
     const infoDiv = document.createElement("div");
     infoDiv.className = "info";
-
     const h2 = document.createElement("h2");
     h2.textContent = data.name;
     infoDiv.appendChild(h2);
-
     const ageP = document.createElement("p");
     ageP.innerHTML = "<strong>Edad:</strong> " + data.age;
     infoDiv.appendChild(ageP);
-
     const gustosP = document.createElement("p");
     gustosP.innerHTML = "<strong>Gustos:</strong> " + data.gustos;
     infoDiv.appendChild(gustosP);
-
     const pasatiemposP = document.createElement("p");
     pasatiemposP.innerHTML = "<strong>Pasatiempos:</strong> " + data.pasatiempos;
     infoDiv.appendChild(pasatiemposP);
-
     const nivelP = document.createElement("p");
     nivelP.innerHTML = "<strong>Nivel:</strong> " + data.nivel;
     infoDiv.appendChild(nivelP);
-
-    card.appendChild(infoDiv);
-
-    // Sección del radar chart
+    contentDiv.appendChild(infoDiv);
+  
+    // Sección del radar chart, pasándole además el color personalizado para el radar
     const chartDiv = document.createElement("div");
     chartDiv.className = "chart";
     const radarChart = createRadarChart({
-      fuerza: data.fuerza,
-      IQ: data.IQ,
-      resistencia: data.resistencia,
-      valor: data.valor,
-      agilidad: data.agilidad
-    });
+        fuerza: data.fuerza,
+        IQ: data.IQ,
+        resistencia: data.resistencia,
+        valor: data.valor,
+        agilidad: data.agilidad
+    }, data.radarColor);
     chartDiv.appendChild(radarChart);
-    card.appendChild(chartDiv);
-
-    // Mostrar la habilidad destacada debajo del radar
+    contentDiv.appendChild(chartDiv);
+  
+    // Habilidad destacada
     const destacaP = document.createElement("p");
     destacaP.className = "destaca";
     destacaP.innerHTML = "<strong>Habilidad:</strong> " + data.habilidadDestacada;
-    card.appendChild(destacaP);
-
-    // Mostrar la debilidad debajo de la habilidad destacada
+    contentDiv.appendChild(destacaP);
+  
+    // Debilidad
     const debilidadP = document.createElement("p");
     debilidadP.className = "debilidad";
     debilidadP.innerHTML = "<strong>Debilidad:</strong> " + data.debilidad;
-    card.appendChild(debilidadP);
-
+    contentDiv.appendChild(debilidadP);
+  
+    card.appendChild(contentDiv);
     return card;
   }
+  
+
+function hexToRgba(hex, opacity) {
+  hex = hex.replace("#", "");
+  if (hex.length === 3) {
+    hex = hex.split('').map(c => c + c).join('');
+  }
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
+
 
   // Función para crear el radar chart (SVG) con etiquetas de dos líneas (nombre y valor)
-  function createRadarChart(values) {
+  function createRadarChart(values, radarColor) {
     const svgNS = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgNS, "svg");
     svg.setAttribute("viewBox", "0 0 300 300");
     const centerX = 150, centerY = 150, maxRadius = 100;
-    // Definir los atributos con sus valores y ángulos fijos
+  
     const attributes = [
       { name: "Fuerza", value: Number(values.fuerza), angle: -90 },
       { name: "IQ", value: Number(values.IQ), angle: -18 },
@@ -221,12 +271,12 @@ document.addEventListener("DOMContentLoaded", function() {
       { name: "Valor", value: Number(values.valor), angle: 126 },
       { name: "Agilidad", value: Number(values.agilidad), angle: 198 }
     ];
-
+  
     function deg2rad(deg) {
       return deg * (Math.PI / 180);
     }
-
-    // Dibujar círculos concéntricos de referencia
+  
+    // Círculos de referencia
     for (let i = 1; i <= 4; i++) {
       const circle = document.createElementNS(svgNS, "circle");
       circle.setAttribute("cx", centerX);
@@ -235,8 +285,8 @@ document.addEventListener("DOMContentLoaded", function() {
       circle.setAttribute("class", "circle-ref");
       svg.appendChild(circle);
     }
-
-    // Dibujar el borde exterior (polígono máximo)
+  
+    // Borde exterior
     let maxPoints = attributes.map(attr => {
       const angleRad = deg2rad(attr.angle);
       const x = centerX + maxRadius * Math.cos(angleRad);
@@ -247,8 +297,8 @@ document.addEventListener("DOMContentLoaded", function() {
     maxPolygon.setAttribute("points", maxPoints);
     maxPolygon.setAttribute("class", "max-polygon");
     svg.appendChild(maxPolygon);
-
-    // Dibujar los ejes
+  
+    // Ejes
     attributes.forEach(attr => {
       const angleRad = deg2rad(attr.angle);
       const x = centerX + maxRadius * Math.cos(angleRad);
@@ -261,8 +311,8 @@ document.addEventListener("DOMContentLoaded", function() {
       line.setAttribute("class", "axis");
       svg.appendChild(line);
     });
-
-    // Dibujar el polígono de datos
+  
+    // Polígono de datos
     let dataPoints = attributes.map(attr => {
       const angleRad = deg2rad(attr.angle);
       const radius = (attr.value / 10) * maxRadius;
@@ -272,10 +322,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }).join(" ");
     const dataPolygon = document.createElementNS(svgNS, "polygon");
     dataPolygon.setAttribute("points", dataPoints);
-    dataPolygon.setAttribute("class", "data-polygon");
+  
+    // Si se definió un color para el radar, lo usamos; de lo contrario, valores por defecto.
+    let fillColor = radarColor ? hexToRgba(radarColor, 0.2) : "rgba(0,128,255,0.2)";
+    let strokeColor = radarColor || "#0055aa";
+    dataPolygon.setAttribute("fill", fillColor);
+    dataPolygon.setAttribute("stroke", strokeColor);
+    dataPolygon.setAttribute("stroke-width", 2);
+  
+    dataPolygon.addEventListener("mouseover", function() {
+      dataPolygon.setAttribute("fill", radarColor ? hexToRgba(radarColor, 0.4) : "rgba(0,128,255,0.4)");
+    });
+    dataPolygon.addEventListener("mouseout", function() {
+      dataPolygon.setAttribute("fill", fillColor);
+    });
     svg.appendChild(dataPolygon);
-
-    // Dibujar las etiquetas fuera del radar, con dos líneas: una para el nombre y otra para el valor
+  
+    // Etiquetas
     attributes.forEach(attr => {
       const angleRad = deg2rad(attr.angle);
       const offset = 20;
@@ -292,23 +355,23 @@ document.addEventListener("DOMContentLoaded", function() {
         text.setAttribute("text-anchor", "middle");
       }
       text.setAttribute("class", "label");
-
-      // Primera línea: el nombre del atributo
+  
+      // Nombre del atributo (primera línea)
       const tspanName = document.createElementNS(svgNS, "tspan");
       tspanName.textContent = attr.name;
       tspanName.setAttribute("x", x);
       text.appendChild(tspanName);
-
-      // Segunda línea: el valor del atributo
+  
+      // Valor del atributo (segunda línea)
       const tspanValue = document.createElementNS(svgNS, "tspan");
       tspanValue.setAttribute("x", x);
       tspanValue.setAttribute("dy", "1.2em");
       tspanValue.textContent = attr.value;
       text.appendChild(tspanValue);
-
+  
       svg.appendChild(text);
     });
-
+  
     return svg;
-  }
+  }  
 });
