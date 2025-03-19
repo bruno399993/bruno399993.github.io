@@ -117,3 +117,56 @@
   margin-top: 5px;
   color: #ff6666;  /* Color rojo para resaltar la debilidad */
 }
+/* Aseguramos la posición relativa para la tarjeta */
+.profile-card {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-10px);
+}
+
+.profile-card::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: inherit;
+  /* Gradiente con dos colores: uno para los costados y otro para el centro */
+  background: linear-gradient(45deg, 
+                var(--glow-color, #ff5733) 0%, 
+                var(--glow-color, #ff5733) 20%, 
+                var(--glow-center, #ffe066) 50%, 
+                var(--glow-color, #ff5733) 80%, 
+                var(--glow-color, #ff5733) 100%);
+  background-size: 400%;
+  filter: blur(8px);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.profile-card:hover::before {
+  opacity: 1;
+  animation: glowWave var(--glow-speed, 3s) linear infinite;
+}
+
+@keyframes glowWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.profile-card-content {
+  position: relative;
+  z-index: 1;
+}
