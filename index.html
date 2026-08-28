@@ -2,13 +2,124 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Papu sistema</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXO los papus podcast</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Contenedor donde se mostrarán los perfiles predefinidos -->
-  <div id="profiles-container"></div>
+  <div class="bg-grid"></div>
 
+  <header class="topbar">
+    <button class="back-btn" id="backBtn" aria-label="Volver atrás" title="Volver atrás">←</button>
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>EL ANEXOS</span>
+      <small>ARCHIVOS</small>
+    </div>
+
+    <nav class="main-nav">
+      <button class="nav-btn active" data-section="games">Juegos</button>
+      <button class="nav-btn disabled" disabled>Información</button>
+      <button class="nav-btn disabled" disabled>Películas</button>
+    </nav>
+
+    <button class="data-btn" id="dataBtn">Datos</button>
+  </header>
+
+  <main>
+    <!-- JUEGOS -->
+    <section id="games" class="page-section active">
+      <div class="section-heading">
+        <span>01 / JUEGOS</span>
+        <p>Selecciona un título para consultar su ficha.</p>
+      </div>
+
+      <div class="game-orbit-layout">
+        <div class="game-wheel" id="gameWheel" aria-label="Selector de juegos"></div>
+
+        <div class="game-preview hidden" id="gamePreview">
+          <div class="cover-panel">
+            <div class="cover-glow"></div>
+            <div class="cover-art" id="gameCover">
+              <div class="cover-code" id="gameCoverCode">GAME</div>
+              <div class="cover-name" id="gameCoverName">—</div>
+            </div>
+
+            <div class="cover-meta">
+              <span id="gameGenre">—</span>
+              <span id="gameSize">—</span>
+            </div>
+          </div>
+
+          <div class="game-info">
+            <span class="eyebrow">FICHA DEL JUEGO</span>
+            <h1 id="gameTitle">—</h1>
+            <p id="gameDescription">—</p>
+
+            <div class="requirements">
+              <h3>Requisitos</h3>
+              <div class="req-grid">
+                <div><span>S.O.</span><strong id="reqOS">—</strong></div>
+                <div><span>CPU</span><strong id="reqCPU">—</strong></div>
+                <div><span>RAM</span><strong id="reqRAM">—</strong></div>
+                <div><span>GPU</span><strong id="reqGPU">—</strong></div>
+                <div><span>ESPACIO</span><strong id="reqStorage">—</strong></div>
+              </div>
+            </div>
+
+            <button class="download-btn" id="downloadBtn">
+              <span>↓</span> Descargar
+            </button>
+            <small class="download-note">Disfruta pequeñin.</small>
+          </div>
+
+          <div class="media-wheel-wrap">
+            <div class="media-wheel" id="mediaWheel"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATOS -->
+    <section id="data" class="page-section data-section">
+      <div class="section-heading">
+        <span>02 / DATOS</span>
+        <p>Repositorio privado. Acceso restringido.</p>
+      </div>
+
+      <div id="loginPanel" class="secret-login">
+        <div class="lock-symbol">◈</div>
+        <span class="eyebrow">ARCHIVO CLASIFICADO</span>
+        <h2>Acceso restringido</h2>
+        <p>Introduce la clave para consultar los documentos.</p>
+        <form id="passwordForm">
+          <input id="passwordInput" type="password" autocomplete="off" placeholder="CLAVE DE ACCESO">
+          <button type="submit">Desbloquear</button>
+        </form>
+        <div class="error-message" id="passwordError"></div>
+      </div>
+
+      <div id="archivePanel" class="archive hidden">
+        <div class="archive-header">
+          <div>
+            <span class="eyebrow">NIVEL DE ACCESO: AUTORIZADO</span>
+            <h2>Archivador de personas</h2>
+          </div>
+          <button class="lock-again" id="lockAgain">Bloquear</button>
+        </div>
+
+        <div class="file-grid" id="fileGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="image-modal hidden" id="imageModal" role="dialog" aria-modal="true" aria-label="Vista ampliada">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">×</button>
+    <div class="modal-image" id="modalImage"></div>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
   <script src="script.js"></script>
 </body>
 </html>
